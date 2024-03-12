@@ -9,6 +9,7 @@ exports.createCourse = async (req, res) => {
       status: "success",
       course,
     });
+    
   } catch {
     res.status(400).json({ // Bad request hatası gönderdik
       status: "fail",
