@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const pageRoute= require('./routes/pageRoute');
 const courseRoute= require('./routes/courseRoute');
+const categoryRoute= require('./routes/categoryRoute');
 
 const app = express();
 
@@ -27,6 +28,7 @@ const port = 3000;
 //Routes
 app.use('/' , pageRoute);
 app.use('/courses' , courseRoute);
+app.use('/categories' , categoryRoute);
 
 // app.get("/about" , (req,res) =>{
 //   res.status(200).render("about" , {
