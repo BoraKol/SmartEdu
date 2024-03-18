@@ -18,7 +18,7 @@ mongoose.connect('mongodb://localhost/smartedu-db' , {
 //Template engine
 app.set('view engine',"ejs");
 
-//Middleware
+//Middlewares
 app.use(express.static("public"));
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
