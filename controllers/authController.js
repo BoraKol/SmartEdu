@@ -15,40 +15,32 @@ exports.createUser = async (req, res) => {
   }
 };
 
-
 exports.loginUser = async (req, res) => {
-  try {
-    const { email, password } = req.body;
+  
+    const { email, password } = req.body; 
+    //Assuming you're sending email and password in the request body 
+      try { 
+      const user = await User.findOne({ email }); // Find the user by email 
 
-    const user = await User.findOne({ email });
-
-    if (!user) {
-      return res.status(404).json({
-        status: 'fail',
-        message: 'User not found',
-      });
-    }
-
-    const passwordMatch = bcrypt.compare(password, user.password);
-
-    if (!passwordMatch) {
-      return res.status(401).json({
-        status: 'fail',
-        message: 'Incorrect password',
-      });
-    }
-
-    // USER SESSION
-    req.session.userID= user._id;
-    res.status(200).redirect('/users/dashboard');
-    
-  } catch (error) {
-    res.status(500).json({
-      status: 'error',
-      message: error.message,
-    });
-  }
-};
+      if (user) {
+      const same = await bcrypt.compare(password, user.password); // Compare passwords 
+      if (same) { // Create a user session or send a token 
+      // res.status(200).send("You are logged in");
+      req.session.userID=user._id;
+      res.status(200).redirect('/users/dashboard'); 
+      } else {
+      res.status(401).send("Invalid password"); 
+      } } else { 
+        res.status(404).send("User not found");
+      }
+      
+      } catch (error) {
+      res.status(500).json({
+        status: "error",
+        error 
+      }); 
+      } 
+  };
 
 exports.logoutUser = (req, res) => {
   req.session.destroy(()=> {
