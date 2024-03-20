@@ -47,7 +47,7 @@ exports.logoutUser = (req, res) => {
   req.session.destroy(()=> {
     res.redirect('/');
   })
-}
+};
 
 
 exports.getDashboardPage = async (req, res) => {
