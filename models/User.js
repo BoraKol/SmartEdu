@@ -21,7 +21,11 @@ const UserSchema = new Schema({
     type: String,
     enum:["student" ,"teacher" ,"admin"], // string tipindeki rolun alabileceği değerleri verdik
     default: "student"
-  }
+  },
+  courses: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Course'
+  }]
   
 });
 
