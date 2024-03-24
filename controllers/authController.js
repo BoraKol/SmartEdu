@@ -35,7 +35,7 @@ exports.loginUser = async (req, res) => {
       // res.status(200).send("You are logged in");
         if(isSame) {
           req.session.userID=user._id;
-        res.status(200).redirect('/users/dashboard');
+          res.status(200).redirect('/users/dashboard');
         } else {
         req.flash("error" , "Your password is not correct!");
         res.status(400).redirect('/login');
@@ -54,7 +54,6 @@ exports.loginUser = async (req, res) => {
 
 }
   
-
 exports.logoutUser = (req, res) => {
   req.session.destroy(()=> {
     res.redirect('/');
