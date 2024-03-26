@@ -292,7 +292,7 @@
 									<td><%=users[i].email %></td>
 									<td><%=users[i].role %></td>
 									<td><a href="/users/<%= users[i]._id %>?_method=DELETE" 
-										onclick="return confirm('ARE YOU SURE')"
+										onclick="return confirm('Are you sure to delete <%= users[i].name %> ')"
 										class="btn btn-danger rounded-0 text-white"><span>DELETE</span></a></td>
 								  </tr>
 							<% } %>
