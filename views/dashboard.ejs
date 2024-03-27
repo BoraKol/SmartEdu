@@ -293,9 +293,16 @@
 									<th scope="row"><%=users[i]._id %></th>
 									<td><%=users[i].email %></td>
 									<td><%=users[i].role %></td>
-									<td><a href="/users/<%= users[i]._id %>?_method=DELETE" 
+									<td>
+										 <% if(!(users[i].role=== "admin")) { %>
+
+										<a href="/users/<%= users[i]._id %>?_method=DELETE" 
 										onclick="return confirm('Are you sure do you want to delete <%= users[i].name %> user?')"
-										class="btn btn-danger rounded-0 text-white"><span>DELETE</span></a></td>
+										class="btn btn-danger rounded-0 text-white"><span>DELETE</span>
+
+										<% } %>
+										</a>
+									</td>
 								  </tr>
 							<% } %>
 								</tbody>
