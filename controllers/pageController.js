@@ -47,16 +47,23 @@ exports.sendEmail = async (req,res) => {
 
   try{
 
+  const { name , email , message } = req.body;
+
+  if(!name || !email || !message) {
+    req.flash('error', "All fields are required to fill");
+    return res.status(400).redirect('contact');
+  }
+
   const outputMessage = `
   
   <h1>Mail Details</h1>
   <ul>
   
-    <li>Name: ${req.body.name}</li>
-    <li>Email: ${req.body.email}</li>
+    <li>Name: ${name}</li>
+    <li>Email: ${email}</li>
   </ul>
   <h1>Message</h1>
-  <p> ${req.body.message}</p>
+  <p> ${message}</p>
   `
 
   let transporter = nodemailer.createTransport({
